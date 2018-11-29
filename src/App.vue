@@ -1,31 +1,73 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app" class="container">
+    <div id = "navigation" class="navBar sticky-top">
+      <nav class="navbar navbar-expand-lg">
+        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+          <div id="links">
+            <router-link :to="{ name: 'Home', params: { books: this.allBooks } }"> Home</router-link> |||
+            <router-link :to="{ name: 'bookList', params: { books: this.allBooks } }"> Book List</router-link>
+          </div>
+          <h2 id="storeName" class="text-center">Crooked Pages Bookstore</h2>
+          <a class="navbar-brand" href=""><img id="logo" src="@/assets/book-logo.png" alt='logo' /></a>
+        </div>
+      </nav>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
+<script>
+
+
+export default {
+  data(){
+    return{
+      allBooks:[]
+    }
+  },
+  created: function () {
+            console.log("maybe this?")
+            fetch('https://api.myjson.com/bins/udbm5')
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) =>{
+                this.allBooks = data.books;
+                });
+        }
+}
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+  #navigation {
+    background-color: black;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+  a {
+    color: white;
+    font-family: Product Sans;
+  }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  a:hover {
+    color: grey;
+  }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  #logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  input {
+    border-radius: 10px;
+    border-style: solid;
+  }
+  #storeName {
+    color: dimgrey;
+    letter-spacing: 2.5px;
+    font-family: Product Sans;
+  }
+  
 </style>
