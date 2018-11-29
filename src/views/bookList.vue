@@ -2,9 +2,11 @@
     <div class="container">
     <h1> {{ test }} </h1>
     <hr>
-    <ul v-for="book in books">
+    <div id = "bookList">
+    <ul v-for="(book, index) in this.$parent.allBooks" :key="index">
         <li>--{{book.titulo}}</li>
     </ul>
+    </div>
 </div>
 </template>
 
@@ -14,8 +16,7 @@ export default {
     name: 'bookList',
     data(){
         return{
-            test: "This is a book list",
-            books: this.$route.params.books
+            test: "This is a book list"
         }
     }
 }

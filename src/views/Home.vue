@@ -1,8 +1,15 @@
 <template>
 
   <div class="container" id="mainZone">
- 
-  <bookShelf :allBooks="books"></bookShelf>
+    
+    <ul v-for="(book, index) in this.myBooks" :key="index">
+        <li>--{{book.portada}}</li>
+    </ul>
+
+
+
+
+    <bookShelf/>
   </div>
 </template> 
 
@@ -13,15 +20,16 @@ import bookShelf from '@/components/bookShelf.vue'
 
   export default {
     name: 'Home',
-    data() {
-      return {
-        books: this.$route.params.books
+    data(){
+      return{
+        myBooks: this.$parent.allBooks
       }
     },
     components: {
       bookShelf
     }
   }
+
 </script>
 
 <style>

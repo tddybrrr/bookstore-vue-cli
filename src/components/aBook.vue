@@ -18,16 +18,8 @@
     import modalButton from '@/components/modalButton.vue'
     export default {
         props: ['title', 'about', 'coverArt', 'coverArtDetail', 'showStatus'],
-        data() {
-            return {
-                link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/AlaskanBear_closeup.jpg/220px-AlaskanBear_closeup.jpg'
-            }
-        },
         components: {
             modalButton
-        },
-        created(){
-            console.log()
         }
     }
 </script>

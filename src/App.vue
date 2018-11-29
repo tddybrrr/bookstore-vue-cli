@@ -1,16 +1,22 @@
 <template>
   <div id="app" class="container">
-    <div id = "navigation" class="navBar sticky-top">
-      <nav class="navbar navbar-expand-lg">
-        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
-          <div id="links">
-            <router-link :to="{ name: 'Home', params: { books: this.allBooks } }"> Home</router-link> |||
-            <router-link :to="{ name: 'bookList', params: { books: this.allBooks } }"> Book List</router-link>
+    <div v-if="isLoading">
+      <h1> I AM LOADING NOW </h1>
+    </div>
+    <div v-else>
+      <div id="navigation" class="navBar sticky-top">
+        <nav class="navbar navbar-expand-lg">
+          <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+            <div id="links">
+              <!-- <router-link to="/"> Home</router-link> ||| -->
+              <router-link to="/"> Home</router-link> |||
+              <router-link to="/bookList"> Book List</router-link>
+            </div>
+            <h2 id="storeName" class="text-center">Crooked Pages Bookstore</h2>
+            <a class="navbar-brand" href=""><img id="logo" src="@/assets/book-logo.png" alt='logo' /></a>
           </div>
-          <h2 id="storeName" class="text-center">Crooked Pages Bookstore</h2>
-          <a class="navbar-brand" href=""><img id="logo" src="@/assets/book-logo.png" alt='logo' /></a>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </div>
     <router-view />
   </div>
@@ -18,21 +24,22 @@
 
 <script>
 
-
 export default {
+  name: 'app',
   data(){
     return{
-      allBooks:[]
+      allBooks:[],
+      isLoading: true
     }
   },
-  created: function () {
-            console.log("maybe this?")
+  mounted: function () { 
             fetch('https://api.myjson.com/bins/udbm5')
                 .then((response) => {
                     return response.json();
                 })
                 .then((data) =>{
-                this.allBooks = data.books;
+                  this.allBooks = data.books;
+                  this.isLoading = false;
                 });
         }
 }
