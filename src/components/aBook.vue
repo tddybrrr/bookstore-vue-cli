@@ -1,13 +1,13 @@
 <template>
     <div>
-        <modalButton v-if="showStatus" @close="showStatus = false" :coverArtDetail="coverArtDetail"> </modalButton>
+        <modalButton v-if="show" @close="show = false" :coverArtDetail="bookFromShelf.detalle"> </modalButton>
         <div class="flip-card">
             <div class="flip-card-inner">
-                <div class="flip-card-front"><img :src="coverArt" alt="cover art"></div>
+                <div class="flip-card-front"><img :src="bookFromShelf.portada" alt="cover art"></div>
                 <div class="flip-card-back">
-                    <h3 class="italy"> "{{title}}" </h3>
-                    <p> {{about}} </p>
-                    <button id="show-modal" :value="showStatus" @click="showStatus = !showStatus"> DETAILS </button>
+                    <h3 class="italy"> {{bookFromShelf.titulo}}" </h3>
+                    <p> {{bookFromShelf.descripcion}} </p>
+                    <button id="show-modal" :value="this.show" @click="this.changeShow"> DETAILS </button>
                 </div>
             </div>
         </div>
@@ -17,11 +17,21 @@
 <script>
     import modalButton from '@/components/modalButton.vue'
     export default {
-        props: ['title', 'about', 'coverArt', 'coverArtDetail', 'showStatus'],
+        props: ['bookFromShelf'],
         components: {
             modalButton
+        },
+    data(){
+        return{
+            show: false
+        }
+    },
+    methods:{
+        changeShow(){
+            this.show = !this.show
         }
     }
+}
 </script>
 
 

@@ -1,16 +1,7 @@
 <template>
-
-  <div class="container" id="mainZone">
-    
-    <ul v-for="(book, index) in this.myBooks" :key="index">
-        <li>--{{book.portada}}</li>
-    </ul>
-
-
-
-
-    <bookShelf/>
-  </div>
+    <div class="container" id="mainZone">
+      <bookShelf :myBooksFromHome="this.myBooks"/>
+    </div>
 </template> 
 
 <script>
@@ -29,13 +20,11 @@ import bookShelf from '@/components/bookShelf.vue'
       bookShelf
     }
   }
-
 </script>
 
 <style>
 #image{
 width: 50%;
 height: 50%;
-
 }
 </style>
