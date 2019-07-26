@@ -1,4 +1,9 @@
-# vue-test-109
+This project attempts to rebuild an existing project using a JavaScript framework (Vue.js) instead of plain ES6. 
+Styling and functionality remain the same, but Vue-cli is necessary to run the project in development mode. See details below.
+
+
+
+
 
 ## Project setup
 ```
